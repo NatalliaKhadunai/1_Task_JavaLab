@@ -1,5 +1,6 @@
 package service;
 
+import command.NewsListSortedByDateCommand;
 import dao.*;
 import entity.Account;
 import entity.Article;
@@ -29,17 +30,20 @@ public class NewsServlet extends HttpServlet {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("/spring-config.xml");
         PrintWriter printWriter = resp.getWriter();
 
-        AccountDAOImpl accountDAO = ctx.getBean("accountDAOImpl", AccountDAOImpl.class);
+       /* AccountDAOImpl accountDAO = ctx.getBean("accountDAOImpl", AccountDAOImpl.class);
         List<Account> accountList = accountDAO.listAccounts();
-        printWriter.print(accountList.toString());
+        printWriter.print(accountList.toString());*/
+
+
+        /*List<Article> articleList = articleDAO.listArticles();
+        printWriter.print(accountList.toString());*/
+
+        /*AuthorDAOImpl authorDAO = ctx.getBean("authorDAOImpl", AuthorDAOImpl.class);
+        List<Author> authorList = authorDAO.listAuthors();
+        printWriter.print(authorList.toString());*/
 
         ArticleDAOImpl articleDAO = ctx.getBean("articleDAOImpl", ArticleDAOImpl.class);
-        articleDAO.create(ctx.getBean("article", Article.class));
-        List<Article> articleList = articleDAO.listArticles();
-        printWriter.print(accountList.toString());
-
-        AuthorDAOImpl authorDAO = ctx.getBean("authorDAOImpl", AuthorDAOImpl.class);
-        List<Author> authorList = authorDAO.listAuthors();
-        printWriter.print(authorList.toString());
+        NewsListSortedByDateCommand command = new NewsListSortedByDateCommand(articleDAO);
+        command.execute(req, resp);
     }
 }

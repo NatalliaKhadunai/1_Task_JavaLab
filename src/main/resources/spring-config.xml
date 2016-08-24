@@ -14,14 +14,5 @@
     <bean id="accountDAOImpl" class="dao.AccountDAOImpl" autowire="byName"></bean>
     <bean id="articleDAOImpl" class="dao.ArticleDAOImpl" autowire="byName"></bean>
     <bean id="authorDAOImpl" class="dao.AuthorDAOImpl" autowire="byName"></bean>
-    <bean id="commentDAOImpl" class="dao.CommentDAOImpl" autowire="byName"></bean>
-    <bean id="tagDAOImpl" class="dao.TagDAOImpl" autowire="byName"></bean>
-    
-    <bean id="article" class="entity.Article">
-        <property name="mainTitle" value="FIRST TITLE"/>
-        <property name="shortTitle" value="FIRST SHORT TITLE"/>
-        <property name="content" value="CONTENT"/>
-        <property name="publishDate" value="2016-03-27 00:00:00"/>
-        <property name="mainPhoto" value="PHOTO_PATH"/>
-    </bean>
+
 </beans>
