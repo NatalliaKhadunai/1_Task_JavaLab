@@ -118,4 +118,19 @@ public class Article {
         result = 31 * result + (getCommentList() != null ? getCommentList().hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", mainTitle='" + mainTitle + '\'' +
+                ", shortTitle='" + shortTitle + '\'' +
+                ", content='" + content + '\'' +
+                ", publishDate=" + publishDate +
+                ", mainPhoto='" + mainPhoto + '\'' +
+                ", authorSet=" + authorSet +
+                ", tagSet=" + tagSet +
+                ", commentList=" + commentList +
+                '}';
+    }
 }

@@ -1,6 +1,6 @@
 package entity;
 
-public class User {
+public class Account {
     private String login;
     private int password;
 
@@ -23,12 +23,12 @@ public class User {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User)) return false;
+        if (!(o instanceof Account)) return false;
 
-        User user = (User) o;
+        Account account = (Account) o;
 
-        if (getPassword() != user.getPassword()) return false;
-        return getLogin().equals(user.getLogin());
+        if (getPassword() != account.getPassword()) return false;
+        return getLogin().equals(account.getLogin());
 
     }
 
@@ -37,5 +37,13 @@ public class User {
         int result = getLogin().hashCode();
         result = 31 * result + getPassword();
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "login='" + login + '\'' +
+                ", password=" + password +
+                '}';
     }
 }

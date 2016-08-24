@@ -5,7 +5,6 @@ import java.util.Set;
 public class Tag {
     private int id;
     private String name;
-    private Set<Article> articleSet;
 
     public int getId() {
         return id;
@@ -23,14 +22,6 @@ public class Tag {
         this.name = name;
     }
 
-    public Set<Article> getArticleSet() {
-        return articleSet;
-    }
-
-    public void setArticleSet(Set<Article> articleSet) {
-        this.articleSet = articleSet;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,5 +36,13 @@ public class Tag {
     @Override
     public int hashCode() {
         return getName().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Tag{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

@@ -3,24 +3,25 @@ package entity;
 import java.sql.Timestamp;
 
 public class Comment {
-    private Article article;
-    private User user;
+    private int articleID;
+    private String accountLogin;
     private Timestamp date;
+    private String content;
 
-    public Article getArticle() {
-        return article;
+    public int getArticleID() {
+        return articleID;
     }
 
-    public void setArticle(Article article) {
-        this.article = article;
+    public void setArticleID(int articleID) {
+        this.articleID = articleID;
     }
 
-    public User getUser() {
-        return user;
+    public String getAccountLogin() {
+        return accountLogin;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAccountLogin(String accountLogin) {
+        this.accountLogin = accountLogin;
     }
 
     public Timestamp getDate() {
@@ -31,6 +32,14 @@ public class Comment {
         this.date = date;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -38,17 +47,29 @@ public class Comment {
 
         Comment comment = (Comment) o;
 
-        if (!getArticle().equals(comment.getArticle())) return false;
-        if (!getUser().equals(comment.getUser())) return false;
-        return getDate().equals(comment.getDate());
+        if (getArticleID() != comment.getArticleID()) return false;
+        if (!getAccountLogin().equals(comment.getAccountLogin())) return false;
+        if (!getDate().equals(comment.getDate())) return false;
+        return getContent().equals(comment.getContent());
 
     }
 
     @Override
     public int hashCode() {
-        int result = getArticle().hashCode();
-        result = 31 * result + getUser().hashCode();
+        int result = getArticleID();
+        result = 31 * result + getAccountLogin().hashCode();
         result = 31 * result + getDate().hashCode();
+        result = 31 * result + getContent().hashCode();
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "articleID=" + articleID +
+                ", accountLogin='" + accountLogin + '\'' +
+                ", date=" + date +
+                ", content='" + content + '\'' +
+                '}';
     }
 }

@@ -58,4 +58,14 @@ public class Author {
         result = 31 * result + getLast_name().hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", articleSet=" + articleSet +
+                '}';
+    }
 }
