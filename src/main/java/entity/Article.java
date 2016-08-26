@@ -125,7 +125,6 @@ public class Article {
                 "id=" + id +
                 ", mainTitle='" + mainTitle + '\'' +
                 ", shortTitle='" + shortTitle + '\'' +
-                ", content='" + content + '\'' +
                 ", publishDate=" + publishDate +
                 ", mainPhoto='" + mainPhoto + '\'' +
                 ", authorSet=" + authorSet +

@@ -1,0 +1,100 @@
+--ARTICLE data
+
+INSERT INTO Article (id, main_title, short_title, content, publish_date, main_photo) VALUES
+  (3, 'Sonia Rykiel, the French fashion designer, dies aged 86', 'Sonia Rykiel is dead',
+  'French fashion designer Sonia Rykiel has died at the age of 86. Her daughter, Nathalie
+  Rykiel, broke the news to the press today: My mother died at 05:00 this morning at her
+  home in Paris from the effects of Parkinson’s. She was diagnosed with the diseasemore
+  than 15 years ago. French President Francois Hollande praised her as a pioneer and said
+   Rykiel’s designs offered women freedom of movement. Sonia Rykiel opened her first store
+    in Paris in 1968 on the Left Bank. Despite becoming synonymous with knitwear,
+    casual-chic and the infamous poor boy sweaters – fitted ribbed jumpers with raised
+    armholes that narrowed the torso and shoulders – her legacy is more focused on
+    pioneering womenswear at a time when women were expected to wear sombre tones and
+    skirts. Regularly compared with Coco Chanel, both designers famously eschewed couture
+     in favour of ready-to-wear clothes, encouraged women to wear trousers, made stripes
+      a signature look and helped carve out Paris as a major player on the modern fashion
+      map. Her manifesto urged “women to be eccentric, seductive, mysterious, and to create
+       their own style', TO_TIMESTAMP('2016-08-25 13:48:00', 'YYYY-MM-DD HH24:MI:SS'), '3.jpg');
+
+ INSERT INTO Article (id, main_title, short_title, content, publish_date, main_photo) VALUES
+   (4, 'Are expensive wines worth the money?', 'Not every £100 bottle tastes better than a £20 one', 'If you had around £100 to spend on an evening’s entertainment for two, what would it get you? It might stretch to a night at the cinema followed by a simple meal in a curry house or chain restaurant. Provided you go easy on the drinks, it may just cover a night’s clubbing and a taxi home. And depending on the teams, it might get you two seats high up in the stands at a Premier League game, plus a couple of substandard pints and a gristly half-time hot dog each, if you’re lucky.
+
+ In each of those cases, the chances of a truly memorable evening (the genuinely great film; the riveting 4-3 scoreline; the mind-altering DJ set and up-for-it crowd) are not, if we’re honest, all that great. More likely you’ll have forgotten all about the night’s events by the following week. And yet only the most unforgiving puritan would condemn you for splashing out on these inessential fripperies. Nobody would brand you a decadent snob or a fool.
+
+ Split that £100 with a mate on a bottle of wine, however, and you’d better be braced for sanctimony and ridicule. Never mind that those rare occasions when I have done just have provided at least as much pleasure, in their way, as the greatest films or football matches. To even contemplate spending so much on a bottle of wine is, for many, always going to be Bullingdon Club obscene.
+
+ It’s not just the price tag that gets people’s goat. It’s more that they can’t see how it translates into tangible differences in quality. People hear about the trophy-winning £5 Spanish red beating wines 10 times the price in taste tests. Or they skim-read a news story where experts can’t tell the difference between a £50 and a £5 bottle. And they sniff a bouquet of rat, with notes of emperor’s new clothes: the scent of a con perpetuated on credulous snobs.
+
+ As with all conspiracy theories, this is difficult to argue against. If you’ve never tried a wine over £20, or have done but been left thinking “meh”, you only have the word of an oenophile like me to go on that the differences can be profound. And it’s not easy to explain why a bottle of wine should ever cost more than £20, let alone as much as £100 or even £1,000.', TO_TIMESTAMP('2016-08-21 13:00:00', 'YYYY-MM-DD HH24:MI:SS'), '4.jpg');
+
+INSERT INTO Article (id, main_title, short_title, content, publish_date, main_photo) VALUES
+  (5, 'UK staycations grow in strength as pound weakens', 'Visit England looks to build on rising number of Britons taking bank holiday break at home as exchange rates and terror attacks deter foreign travel', 'The government is to launch a tourism action plan including cutting red tape for B&Bs and ready-made train tours as an increasing number of Brits take bank holiday breaks in the UK.
+
+Just over 5 million Britons are planning a staycation in the UK over the weekend, 6% more than last year, according to Visit England, the tourism promotion body, after a fall in the value of the pound against the dollar and the euro in the wake of the EU referendum vote.
+
+The expected surge comes after a record-breaking first four months of the year for domestic holiday trips in England. From January to April Britons took 11m holiday trips, 8% more than during the same period last year, according to Visit England. They spent £2.8bn, 22% up on last year, more than ever before.
+
+That continued a strong year in 2015 for staycations when the number of trips and the amount spent both rose 7% on the previous year.
+
+The prime minister, Theresa May, who chose to holiday in the Swiss Alps this month, said: “Tourism is vitally important to the UK and the sector goes from strength to strength. Our stunning scenery, centuries-old monuments and cultural traditions continue to draw visitors from both home and abroad.”
+
+The government action plan will include internationally promoted rail travel deals, with five easily bookable itineraries that will help tourists get around the UK, although it’s not clear if they will be assured a seat.
+
+There will also be changes to regulations to let B&Bs offer visitors a welcome drink without the need for an alcohol licence, or to pick up guests from a station without applying to become a taxi service.', TO_TIMESTAMP('2016-08-26 00:01:00', 'YYYY-MM-DD HH24:MI:SS'), '5.jpg');
+
+--AUTHOR data
+
+INSERT INTO Author (id, first_name, last_name) VALUES (2, 'Ann', 'Turick');
+INSERT INTO Author (id, first_name, last_name) VALUES (3, 'Katarzyna', 'Karach');
+INSERT INTO Author (id, first_name, last_name) VALUES (4, 'Veronika', 'Ezepchik');
+INSERT INTO Author (id, first_name, last_name) VALUES (5, 'Juliya', 'Varabei');
+
+--ACCOUNT data
+
+INSERT INTO Account (login, password) VALUES ('Khadunai', 46792755);
+INSERT INTO Account (login, password) VALUES ('KatKarach', 46792755);
+INSERT INTO Account (login, password) VALUES ('Turick', 46792755);
+INSERT INTO Account (login, password) VALUES ('Ezepchik', 46792755);
+
+--TAG data
+
+INSERT INTO Tag (id, name) VALUES (1, 'economics');
+INSERT INTO Tag (id, name) VALUES (2, 'business');
+INSERT INTO Tag (id, name) VALUES (3, 'fashion');
+INSERT INTO Tag (id, name) VALUES (4, 'stars');
+INSERT INTO Tag (id, name) VALUES (5, 'entertainment');
+
+--COMMENTS data
+
+INSERT INTO Comments (article_id, user_login, publish_date, content)
+VALUES (3, 'KatKarach',
+TO_TIMESTAMP('2016-08-25 14:40:00', 'YYYY-MM-DD HH24:MI:SS'), 'She was adorable');
+INSERT INTO Comments (article_id, user_login, publish_date, content)
+VALUES (3, 'Khadunai',
+TO_TIMESTAMP('2016-08-25 14:42:00', 'YYYY-MM-DD HH24:MI:SS'), 'So sorry');
+INSERT INTO Comments (article_id, user_login, publish_date, content)
+VALUES (4, 'KatKarach',
+TO_TIMESTAMP('2016-08-21 14:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'Both variants are good');
+INSERT INTO Comments (article_id, user_login, publish_date, content)
+VALUES (4, 'Khadunai',
+TO_TIMESTAMP('2016-08-25 15:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'ATATTAT');
+
+--ARTICLE-TAG data
+
+INSERT INTO Article_Tag (article_id, tag_id) VALUES (3, 3);
+INSERT INTO Article_Tag (article_id, tag_id) VALUES (3, 4);
+INSERT INTO Article_Tag (article_id, tag_id) VALUES (4, 5);
+INSERT INTO Article_Tag (article_id, tag_id) VALUES (5, 1);
+INSERT INTO Article_Tag (article_id, tag_id) VALUES (5, 2);
+
+--ARTICLE-AUTHOR data
+
+INSERT INTO Article_Author (article_id, author_id) VALUES (1, 1);
+INSERT INTO Article_Author (article_id, author_id) VALUES (2, 1);
+INSERT INTO Article_Author (article_id, author_id) VALUES (3, 2);
+INSERT INTO Article_Author (article_id, author_id) VALUES (3, 3);
+INSERT INTO Article_Author (article_id, author_id) VALUES (4, 2);
+INSERT INTO Article_Author (article_id, author_id) VALUES (4, 3);
+INSERT INTO Article_Author (article_id, author_id) VALUES (4, 4);
+INSERT INTO Article_Author (article_id, author_id) VALUES (5, 5);

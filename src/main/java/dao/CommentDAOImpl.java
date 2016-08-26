@@ -25,27 +25,27 @@ public class CommentDAOImpl implements CommentDAO {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-    public void create(Article article, Account account, Comment comment) {
+    public void create(Comment comment) {
         String SQL = SQLQueryManager.getProperty("CommentDAO.addComment");
-        jdbcTemplateObject.update( SQL, article.getId(), account.getLogin(),
+        jdbcTemplateObject.update( SQL, comment.getArticleID(), comment.getAccountLogin(),
                 comment.getDate(), comment.getContent());
     }
 
-    public List<Comment> listCommentByArticleId(Article article) {
+    public List<Comment> listCommentByArticleId(int id) {
         String SQL = SQLQueryManager.getProperty("CommentDAO.getCommentsByArticleId");
-        List<Comment> commentList = jdbcTemplateObject.query(SQL, new CommentMapper(), article.getId());
+        List<Comment> commentList = jdbcTemplateObject.query(SQL, new CommentMapper(), id);
         return commentList;
     }
 
-    public List<Comment> listCommentByAccountLogin(Account account) {
+    public List<Comment> listCommentByAccountLogin(String login) {
         String SQL = SQLQueryManager.getProperty("CommentDAO.getCommentsByAccountLogin");
-        List<Comment> commentList = jdbcTemplateObject.query(SQL, new CommentMapper(), account.getLogin());
+        List<Comment> commentList = jdbcTemplateObject.query(SQL, new CommentMapper(), login);
         return commentList;
     }
 
-    public void delete(Article article, Account account, Comment comment){
+    public void delete(Comment comment){
         String SQL = SQLQueryManager.getProperty("CommentDAO.deleteComment");
-        jdbcTemplateObject.update(SQL, article.getId(), account.getLogin(),
+        jdbcTemplateObject.update(SQL, comment.getArticleID(), comment.getAccountLogin(),
                 comment.getDate(), comment.getContent());
     }
 }

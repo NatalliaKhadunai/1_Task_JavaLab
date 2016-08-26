@@ -14,5 +14,7 @@
     <bean id="accountDAOImpl" class="dao.AccountDAOImpl" autowire="byName"></bean>
     <bean id="articleDAOImpl" class="dao.ArticleDAOImpl" autowire="byName"></bean>
     <bean id="authorDAOImpl" class="dao.AuthorDAOImpl" autowire="byName"></bean>
-
+    <bean id="commentDAOImpl" class="dao.CommentDAOImpl" autowire="byName"></bean>
+    <bean id="tagDAOImpl" class="dao.TagDAOImpl" autowire="byName"></bean>
+    <bean id="articleTagDAOImpl" class="dao.ArticleTagDAOImpl" autowire="byName"></bean>
 </beans>

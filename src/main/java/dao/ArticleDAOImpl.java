@@ -27,16 +27,16 @@ public class ArticleDAOImpl implements ArticleDAO {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-    public void create(Article article, Set<Author> authorSet, Set<Tag> tagSet) {
+    public void create(Article article, List<Integer> authorIdList, Set<Integer> tagIdSet) {
         String SQL = SQLQueryManager.getProperty("ArticleDAO.addArticle");
         jdbcTemplateObject.update( SQL, article.getMainTitle(), article.getShortTitle(),
                 article.getContent(), article.getPublishDate(), article.getMainPhoto());
         String SQLArticleAuthor = SQLQueryManager.getProperty("Article_Author.addRow");
-        for (Author author : authorSet)
-            jdbcTemplateObject.update( SQLArticleAuthor, article.getId(), author.getId());
+        for (int authorId : authorIdList)
+            jdbcTemplateObject.update( SQLArticleAuthor, article.getId(), authorId);
         String SQLArticleTag = SQLQueryManager.getProperty("Article_Tag.addRow");
-        for (Tag tag : tagSet)
-            jdbcTemplateObject.update( SQLArticleAuthor, article.getId(), tag.getId());
+        for (int tagId : tagIdSet)
+            jdbcTemplateObject.update( SQLArticleAuthor, article.getId(), tagId);
     }
 
     public Article getArticleById(int id) {
@@ -55,6 +55,12 @@ public class ArticleDAOImpl implements ArticleDAO {
         String SQL = SQLQueryManager.getProperty("ArticleDAO.getAllArticlesSortByDate");
         List<Article> articleList = jdbcTemplateObject.query(SQL, new ArticleMapper());
         return articleList;
+    }
+
+    public int getTotalCount() {
+        String SQL = SQLQueryManager.getProperty("ArticleDAO.totalCount");
+        int totalCount = jdbcTemplateObject.queryForObject(SQL, Integer.class);
+        return totalCount;
     }
 
     public void delete(Article article){
