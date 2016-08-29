@@ -9,5 +9,6 @@ public interface AccountDAO extends DAO {
     void create(Account account);
     Account getAccount(String login);
     List<Account> listAccounts();
+    void update(Account account);
     void delete(Account account);
 }

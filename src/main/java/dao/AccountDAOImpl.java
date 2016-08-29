@@ -1,6 +1,7 @@
 package dao;
 
 import entity.Account;
+import entity.Author;
 import manager.SQLQueryManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -38,6 +39,11 @@ public class AccountDAOImpl implements AccountDAO {
         String SQL = SQLQueryManager.getProperty("AccountDAO.getAllAccounts");
         List<Account> accountList = jdbcTemplateObject.query(SQL, new AccountMapper());
         return accountList;
+    }
+
+    public void update(Account account) {
+        String SQL = SQLQueryManager.getProperty("AccountDAO.updateAccount");
+        jdbcTemplateObject.update(SQL, account.getPassword(), account.getLogin());
     }
 
     public void delete(Account account){

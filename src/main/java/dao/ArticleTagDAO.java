@@ -1,5 +1,7 @@
 package dao;
 
+import entity.Tag;
+
 import java.util.List;
 import java.util.Set;
 
@@ -8,5 +10,6 @@ import java.util.Set;
  */
 public interface ArticleTagDAO extends DAO {
     void attachTag(int articleId, int tagId);
-    List<Integer> searchByTags(Set<String> tagIdSet);
+    List<Integer> searchByTags(Set<Tag> tagSet);
+    List<Integer> searchByTags(Tag ... tags);
 }

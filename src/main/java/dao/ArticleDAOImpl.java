@@ -8,6 +8,8 @@ import manager.SQLQueryManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -27,16 +29,19 @@ public class ArticleDAOImpl implements ArticleDAO {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-    public void create(Article article, List<Integer> authorIdList, Set<Integer> tagIdSet) {
+    public Article create(Article article, Set<Author> authorSet, Set<Tag> tagSet) {
         String SQL = SQLQueryManager.getProperty("ArticleDAO.addArticle");
-        jdbcTemplateObject.update( SQL, article.getMainTitle(), article.getShortTitle(),
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplateObject.update( SQL, keyHolder, article.getMainTitle(), article.getShortTitle(),
                 article.getContent(), article.getPublishDate(), article.getMainPhoto());
+        article.setId(keyHolder.getKey().intValue());
         String SQLArticleAuthor = SQLQueryManager.getProperty("Article_Author.addRow");
-        for (int authorId : authorIdList)
-            jdbcTemplateObject.update( SQLArticleAuthor, article.getId(), authorId);
+        for (Author author : authorSet)
+            jdbcTemplateObject.update( SQLArticleAuthor, article.getId(), author.getId());
         String SQLArticleTag = SQLQueryManager.getProperty("Article_Tag.addRow");
-        for (int tagId : tagIdSet)
-            jdbcTemplateObject.update( SQLArticleAuthor, article.getId(), tagId);
+        for (Tag tag : tagSet)
+            jdbcTemplateObject.update( SQLArticleAuthor, article.getId(), tag.getId());
+        return article;
     }
 
     public Article getArticleById(int id) {
@@ -61,6 +66,12 @@ public class ArticleDAOImpl implements ArticleDAO {
         String SQL = SQLQueryManager.getProperty("ArticleDAO.totalCount");
         int totalCount = jdbcTemplateObject.queryForObject(SQL, Integer.class);
         return totalCount;
+    }
+
+    public void editArticle(Article articleToEdit) {
+        String SQL = SQLQueryManager.getProperty("ArticleDAO.editArticle");
+        jdbcTemplateObject.update(SQL, articleToEdit.getMainTitle(), articleToEdit.getShortTitle(),
+                articleToEdit.getContent(), articleToEdit.getPublishDate(), articleToEdit.getMainPhoto(), articleToEdit.getId());
     }
 
     public void delete(Article article){

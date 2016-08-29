@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Natallia_Khadunai on 8/26/2016.
@@ -21,12 +21,14 @@ import java.util.Set;
 public class ArticleTagDAOImpl implements ArticleTagDAO {
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplateObject;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Autowired
     @Qualifier("dataSource")
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
+        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
     public void attachTag(int articleId, int tagId) {
@@ -34,16 +36,27 @@ public class ArticleTagDAOImpl implements ArticleTagDAO {
         jdbcTemplateObject.update(SQL, articleId, tagId);
     }
 
-    public List<Integer> searchByTags(Set<String> tagIdSet) {
+    public List<Integer> searchByTags(Tag ... tags) {
+        Set<Tag> tagSet = new HashSet<Tag>();
+        for (Tag tag : tags) {
+            tagSet.add(tag);
+        }
+        return searchByTags(tagSet);
+    }
+
+    public List<Integer> searchByTags(Set<Tag> tagSet) {
         String SQL = SQLQueryManager.getProperty("Article_Tag.searchByTags");
-        MapSqlParameterSource parameters = new MapSqlParameterSource();
-        parameters.addValue("tags", tagIdSet);
         RowMapper<Integer> rowMapper = new RowMapper<Integer>() {
             public Integer mapRow(ResultSet resultSet, int rowNum) throws SQLException {
-                return resultSet.getInt("article_id");
+                return resultSet.getInt("ARTICLE_ID");
             }
         };
-        List<Integer> articleIdList = jdbcTemplateObject.query(SQL, rowMapper, parameters);
+        List<Integer> tagIdList = new ArrayList<Integer>();
+        for (Tag tag : tagSet) tagIdList.add(tag.getId());
+        MapSqlParameterSource parameters = new MapSqlParameterSource();
+        parameters.addValue("tag_id", tagIdList);
+        parameters.addValue("tag_count", tagSet.size());
+        List<Integer> articleIdList = namedParameterJdbcTemplate.query(SQL, parameters, rowMapper);
         return articleIdList;
     }
 }
