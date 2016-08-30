@@ -25,10 +25,11 @@ public class CommentDAOImpl implements CommentDAO {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-    public void create(Comment comment) {
+    public Comment create(Comment comment) {
         String SQL = SQLQueryManager.getProperty("CommentDAO.addComment");
         jdbcTemplateObject.update( SQL, comment.getArticleID(), comment.getAccountLogin(),
                 comment.getDate(), comment.getContent());
+        return comment;
     }
 
     public List<Comment> listCommentByArticleId(int id) {

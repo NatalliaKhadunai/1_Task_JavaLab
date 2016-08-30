@@ -1,4 +1,6 @@
-package entity;
+package service;
+
+import entity.Article;
 
 import java.util.Comparator;
 

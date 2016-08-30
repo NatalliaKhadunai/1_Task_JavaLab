@@ -2,10 +2,12 @@ package service;
 
 import dao.CommentDAO;
 import entity.Comment;
+import exception.InvalidCommentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by Natallia_Khadunai on 8/29/2016.
@@ -15,16 +17,27 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     CommentDAO commentDAO;
 
-    public void addComment(int articleId, String userLogin, Timestamp publishDate, String content) {
-        Comment comment = new Comment();
-        comment.setArticleID(articleId);
-        comment.setAccountLogin(userLogin);
-        comment.setDate(publishDate);
-        comment.setContent(content);
-        addComment(comment);
+    public void setCommentDAO(CommentDAO commentDAO) {
+        this.commentDAO = commentDAO;
     }
 
-    public void addComment(Comment comment) {
-        commentDAO.create(comment);
+    public Comment addComment(Comment comment) {
+        if (comment != null) return commentDAO.create(comment);
+        else throw new InvalidCommentException("Comment shouldn't be null");
     }
+
+    public List<Comment> listCommentByArticleId(int id) {
+        return commentDAO.listCommentByArticleId(id);
+    }
+
+    public List<Comment> listCommentByAccountLogin(String login) {
+        return commentDAO.listCommentByAccountLogin(login);
+    }
+
+    public void delete(Comment comment) {
+        if (comment != null) commentDAO.delete(comment);
+        else throw new InvalidCommentException("Comment shouldn't be null");
+    }
+
+
 }

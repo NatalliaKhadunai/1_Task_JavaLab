@@ -24,10 +24,7 @@ public class Account {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Account)) return false;
-
         Account account = (Account) o;
-
-        if (getPassword() != account.getPassword()) return false;
         return getLogin().equals(account.getLogin());
 
     }

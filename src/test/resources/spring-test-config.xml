@@ -9,11 +9,23 @@
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
         <property name="url" value="jdbc:oracle:thin:@//localhost:1521/XE" />
         <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-        <property name="username" value="hr" />
-        <property name="password" value="hr" />
+        <property name="username" value="test" />
+        <property name="password" value="12345" />
         <property name="removeAbandoned" value="true"/>
         <property name="initialSize" value="20" />
         <property name="maxActive" value="30" />
+    </bean>
+
+    <bean id="dbUnitDatabaseConfig" class="com.github.springtestdbunit.bean.DatabaseConfigBean">
+        <property name="datatypeFactory">
+            <bean class="org.dbunit.ext.oracle.Oracle10DataTypeFactory" />
+        </property>
+        <property name="caseSensitiveTableNames" value="false" />
+    </bean>
+    <bean id="dbUnitDatabaseConnection" class="com.github.springtestdbunit.bean.DatabaseDataSourceConnectionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="databaseConfig" ref="dbUnitDatabaseConfig"/>
+        <property name="schema" value="TEST"/>
     </bean>
 
     <bean id="accountDAO" class="dao.AccountDAOImpl" autowire="byName"></bean>
@@ -22,8 +34,5 @@
     <bean id="commentDAO" class="dao.CommentDAOImpl" autowire="byName"></bean>
     <bean id="tagDAO" class="dao.TagDAOImpl" autowire="byName"></bean>
     <bean id="articleTagDAO" class="dao.ArticleTagDAOImpl" autowire="byName"></bean>
-
-    <bean id="tagService" class="service.TagServiceImpl" autowire="byName"></bean>
-    <bean id="articleService" class="service.ArticleServiceImpl" autowire="byName"></bean>
 
 </beans>

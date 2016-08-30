@@ -1,11 +1,13 @@
-package dao;
+package service;
 
 import entity.Account;
 
-import javax.sql.DataSource;
 import java.util.List;
 
-public interface AccountDAO extends DAO {
+/**
+ * Created by Natallia_Khadunai on 8/30/2016.
+ */
+public interface AccountService {
     Account create(Account account);
     Account getAccount(String login);
     List<Account> listAccounts();

@@ -6,7 +6,6 @@ import manager.SQLQueryManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
 import javax.sql.RowSet;
@@ -23,10 +22,10 @@ public class AccountDAOImpl implements AccountDAO {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-    public void create(Account account) {
+    public Account create(Account account) {
         String SQL = SQLQueryManager.getProperty("AccountDAO.addAccount");
         jdbcTemplateObject.update( SQL, account.getLogin(), account.getPassword());
-        return;
+        return account;
     }
 
     public Account getAccount(String login) {

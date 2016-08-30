@@ -98,12 +98,7 @@ public class Article {
         if (!getShortTitle().equals(article.getShortTitle())) return false;
         if (!getContent().equals(article.getContent())) return false;
         if (!getPublishDate().equals(article.getPublishDate())) return false;
-        if (getMainPhoto() != null ? !getMainPhoto().equals(article.getMainPhoto()) : article.getMainPhoto() != null)
-            return false;
-        if (!getAuthorSet().equals(article.getAuthorSet())) return false;
-        if (getTagSet() != null ? !getTagSet().equals(article.getTagSet()) : article.getTagSet() != null) return false;
-        return !(getCommentList() != null ? !getCommentList().equals(article.getCommentList()) : article.getCommentList() != null);
-
+        return (getMainPhoto() != null ? getMainPhoto().equals(article.getMainPhoto()) : false);
     }
 
     @Override

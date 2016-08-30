@@ -36,11 +36,9 @@ public class ArticleTagDAOImpl implements ArticleTagDAO {
         jdbcTemplateObject.update(SQL, articleId, tagId);
     }
 
-    public List<Integer> searchByTags(Tag ... tags) {
+    public List<Integer> searchByTag(Tag tag) {
         Set<Tag> tagSet = new HashSet<Tag>();
-        for (Tag tag : tags) {
-            tagSet.add(tag);
-        }
+        tagSet.add(tag);
         return searchByTags(tagSet);
     }
 

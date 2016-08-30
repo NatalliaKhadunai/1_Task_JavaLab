@@ -12,6 +12,9 @@ import java.util.Set;
  */
 public interface TagService {
     Tag createTag(Tag tag);
+    Tag getTag(int id);
+    List<Tag> listTags();
+    void deleteTag(Tag tag);
     void attachTag(Tag tag, Article article);
     List<Article> searchByTags(Set<Tag> tagSet);
     Map<Tag, Integer> totalNewsCountForEachTag();

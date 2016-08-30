@@ -11,5 +11,5 @@ import java.util.Set;
 public interface ArticleTagDAO extends DAO {
     void attachTag(int articleId, int tagId);
     List<Integer> searchByTags(Set<Tag> tagSet);
-    List<Integer> searchByTags(Tag ... tags);
+    List<Integer> searchByTag(Tag tag);
 }
