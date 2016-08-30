@@ -7,6 +7,15 @@ public class Author {
     private String first_name;
     private String last_name;
     private Set<Article> articleSet;
+    private boolean isWorking;
+
+    public boolean isWorking() {
+        return isWorking;
+    }
+
+    public void setWorking(boolean working) {
+        isWorking = working;
+    }
 
     public String getFirst_name() {
         return first_name;

@@ -37,7 +37,7 @@ public class ArticleDAOImpl implements ArticleDAO {
         article.setId(keyHolder.getKey().intValue());
         String SQLArticleAuthor = SQLQueryManager.getProperty("Article_Author.addRow");
         for (Author author : authorSet)
-            jdbcTemplateObject.update( SQLArticleAuthor, article.getId(), author.getId());
+            if (author.isWorking()) jdbcTemplateObject.update( SQLArticleAuthor, article.getId(), author.getId());
         String SQLArticleTag = SQLQueryManager.getProperty("Article_Tag.addRow");
         for (Tag tag : tagSet)
             jdbcTemplateObject.update( SQLArticleAuthor, article.getId(), tag.getId());
