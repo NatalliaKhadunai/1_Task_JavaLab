@@ -9,7 +9,7 @@ import java.io.Reader;
 import java.util.Properties;
 
 public class SQLQueryManager {
-
+    private final static Logger logger = Logger.getLogger("Manager");
     private static Properties properties;
     static {
         try {
@@ -19,6 +19,7 @@ public class SQLQueryManager {
             Reader reader = new InputStreamReader(inputStream, "UTF-8");
             properties.load(reader);
         } catch (IOException e) {
+            logger.error(e);
         }
     }
 
